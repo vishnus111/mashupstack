@@ -19,10 +19,12 @@ body {
 
 .left {
     background-color: #333;
+    width: 60%;
 }
 
 .right {
     background-color: #0f0;
+    width: 40%;
 }
 
 button {
