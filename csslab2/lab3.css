@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+.main{
+    position: relative;
+}
+.circle{
+    width: 200px;
+    height: 200px;
+    background-color: orangered;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 250px;
+    margin-left: 650px;
+}
