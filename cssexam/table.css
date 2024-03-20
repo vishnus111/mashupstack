@@ -1,18 +1,30 @@
 *{
     margin: 0;
     padding: 0;
+
+}
+body{
+    background-color: rgb(77, 74, 74);
 }
 table,td,th{
-    border: 1px solid;
+    border: 1px solid black;
 }
 table{
     border-collapse: collapse;
     width: 100%;
     background-color: grey;
     color: beige;
-    margin-top: 90px;
+    margin-top: 200px;
+    width: 70%;
+    margin-left: 200px;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
 
 }
 td{
+    height: 50px;
+}
+tr{
     height: 50px;
 }
