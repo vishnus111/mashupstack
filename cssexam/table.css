@@ -7,13 +7,13 @@ body{
     background-color: rgb(77, 74, 74);
 }
 table,td,th{
-    border: 1px solid black;
+    border: 1px solid #000000;
 }
 table{
     border-collapse: collapse;
     width: 100%;
-    background-color: grey;
-    color: beige;
+    background-color: rgb(128, 128, 128);
+    color: rgb(245, 245, 240);
     margin-top: 200px;
     width: 70%;
     margin-left: 200px;
