@@ -5,8 +5,10 @@ var newArr =[]
 
 findEven = ()=>{
     for (let i=1;i<=even.length;i++){
+    
         if(even[i]%2==0){
-            newArr.push(even[i])
+          newArr.push(even[i])
+            
             
         }
         

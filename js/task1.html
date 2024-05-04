@@ -1,20 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Password Validation</title>
+    <script>
+        function validatePassword() {
+            var pass = document.getElementById("password").value;
+            var regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).+$/;
+
+//var isValid = regex.test(pass);
+var isValid = pass.match(regex)
+
+if (isValid) {
+    alert("true")
+    console.log("String passes validation.");
+} else {
+    alert("false")
+    console.log("String does not pass validation.");
+}
+
+        }
+    </script>
 </head>
 <body>
-    <form action="">
-        <label for="email">Email :</label><br>
-        <input type="email"><br>
-        <label for="password">Password :</label><br>
-        <input type="password"><br>
+    <form >
+        <label for="password">Enter Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit" onclick="validatePassword()">Check Password</button>
     </form>
-    <input type="checkbox">
-    <label for="remember">Remember me</label><br>
-    <button>Login</button>
-    
 </body>
 </html>
