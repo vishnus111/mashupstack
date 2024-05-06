@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+</head>
+<body>
+    <div class="container">
+        
+        <h2>Calculator</h2>
+        <input type="number" id="num1">
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" id="num2">
+        <button onclick="calculate()">=</button>
+        <div id="calcResult"></div>
+
+    <script>
+    
+        var num1 = parseFloat(document.getElementById('num1').value);
+        var num2 = parseFloat(document.getElementById('num2').value);
+        var operator = document.getElementById('operator').value;
+        var result;
+        function calculate() {
+            switch(operator) {
+                case '+': result = num1 + num2;
+                 break;
+                case '-': result = num1 - num2;
+                 break;
+                case '*': result = num1 * num2;
+                 break;
+                case '/': result = num2 !== 0 ? num1 / num2 : 'Error: Division by zero';
+                 break;
+                default: result = 'Error: Invalid operator';
+                 break;
+            }
+            document.getElementById('calcResult').innerText = result;
+        }
+
+        
+    </script>
+</body>
+</html>
