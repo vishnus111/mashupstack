@@ -9,14 +9,14 @@
 <body>
     <div class="container">
         
-        <h2>Calculator</h2>
-        <input type="number" id="num1">
-        <select id="operator">
+        
+        <input type="number" id="num1"><br>
+        <select id="operator" >
             <option value="+">+</option>
             <option value="-">-</option>
             <option value="*">*</option>
             <option value="/">/</option>
-        </select>
+        </select><br>
         <input type="number" id="num2">
         <button onclick="calculate()">=</button>
         <div id="calcResult"></div>
@@ -47,3 +47,20 @@
     </script>
 </body>
 </html>
+// switch (op) {
+    //   case "+":
+    //     result = add(num1, num2);
+    //     break;
+    //   case "-":
+    //     result = subtract(num1, num2);
+    //     break;
+    //   case "*":
+    //     result = multiplication(num1, num2);
+    //     break;
+    //   case "/":
+    //     result = division(num1, num2);
+    //     break;
+    //   default:
+    //     result = "Error: Invalid operator";
+    //     break;
+    // }

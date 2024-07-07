@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lottery Draw</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .winner { color: red; }
-    </style>
+
 </head>
 <body>
     <div class="container">
@@ -34,19 +32,21 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ 
     <script>
 
-        var ticketNumbers = [123, 456, 789, 101, 202]; 
+        var ticketNumbers = [1234, 4563, 7896, 1019, 5202]; 
 
         function selectWinner() {
             var winner = ticketNumbers[Math.floor(Math.random() * ticketNumbers.length)];
             console.log(winner); 
             document.getElementById('winner').innerText = winner; 
+            document.getElementById("winner").style.color = "red";
             document.getElementById('modalWinner').innerText = winner;
-           // $('#winnerModal').modal('show'); // Show the Bootstrap modal
+             $('#winnerModal').modal('show'); 
         }
     </script>
+       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
