@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <% if (message) { %>
+        <div class="<%= message.type %>"><%= message.message %></div>
+    <% } %>
+    <p>Welcome, <%= user.username %></p>
+    <a href="/users/add-weight">Add Weight</a> | <a href="/users/logout">Logout</a>
+
+    <h2>Your Weights</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Weight</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% weights.forEach(weight => { %>
+                <tr>
+                    <td><%= new Date(weight.date).toLocaleDateString() %></td>
+                    <td><%= weight.weight %></td>
+                    <td>
+                        <a href="/users/edit-weight/<%= weight._id %>">Edit</a>
+                        <form action="/users/delete-weight/<%= weight._id %>" method="POST" style="display: inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <div>
+        <% for(let i = 1; i <= pages; i++) { %>
+            <a href="?page=<%= i %>"><%= i %></a>
+        <% } %>
+    </div>
+
+    <h2>Calculate Weight Loss</h2>
+    <form id="weight-loss-form">
+        <div>
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" name="start-date" required>
+        </div>
+        <div>
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date" name="end-date" required>
+        </div>
+        <button type="submit">Calculate</button>
+    </form>
+    <div id="weight-loss-result"></div>
+
+    <script src="/js/scripts.js"></script>
+</body>
+</html>
