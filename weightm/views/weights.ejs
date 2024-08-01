@@ -1,0 +1,14 @@
+<% include('partials/header') %>
+<h2>Manage Weights</h2>
+<form action="/api/users/weight" method="POST">
+    <label for="weight">Weight:</label>
+    <input type="number" name="weight" required>
+    <button type="submit">Add Weight</button>
+</form>
+<h3>Your Weights</h3>
+<ul>
+    <% weights.forEach(weight => { %>
+        <li><%= weight.date.toDateString() %>: <%= weight.weight %> kg</li>
+    <% }) %>
+</ul>
+<% include('partials/footer') %>

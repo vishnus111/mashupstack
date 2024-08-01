@@ -6,15 +6,15 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="/css/styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <h1>Dashboard</h1>
+    <h1>Welcome, <%= user.username %></h1>
+    <a href="/users/add-weight">Add Weight</a>
+    <a href="/users/logout">Logout</a>
     <% if (message) { %>
-        <div class="<%= message.type %>"><%= message.message %></div>
+        <div class="success"><%= message %></div>
     <% } %>
-    <p>Welcome, <%= user.username %></p>
-    <a href="/users/add-weight">Add Weight</a> | <a href="/users/logout">Logout</a>
-
     <h2>Your Weights</h2>
     <table>
         <thead>
@@ -27,12 +27,11 @@
         <tbody>
             <% weights.forEach(weight => { %>
                 <tr>
-                    <td><%= new Date(weight.date).toLocaleDateString() %></td>
+                    <td><%= weight.date.toDateString() %></td>
                     <td><%= weight.weight %></td>
                     <td>
                         <a href="/users/edit-weight/<%= weight._id %>">Edit</a>
-                        <form action="/users/delete-weight/<%= weight._id %>" method="POST" style="display: inline;">
-                            <input type="hidden" name="_method" value="DELETE">
+                        <form action="/users/delete-weight/<%= weight._id %>" method="POST" style="display:inline;">
                             <button type="submit">Delete</button>
                         </form>
                     </td>
@@ -40,21 +39,166 @@
             <% }); %>
         </tbody>
     </table>
-
-    <h2>Calculate Weight Loss</h2>
-    <form id="weight-loss-form">
+    <div>
+        <% for (let i = 1; i <= pages; i++) { %>
+            <a href="/users/dashboard?page=<%= i %>"><%= i %></a>
+        <% } %>
+    </div>
+    <h2>Find Weight Loss</h2>
+   
+    <!-- <form id="weight-loss-form">
         <div>
-            <label for="start-date">Start Date:</label>
-            <input type="date" id="start-date" name="start-date" required>
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate" required>
         </div>
         <div>
-            <label for="end-date">End Date:</label>
-            <input type="date" id="end-date" name="end-date" required>
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" name="endDate" required>
+        </div>
+        <button type="submit">Find Weight Loss</button>
+    </form>
+    <div id="weight-loss-result"></div>
+    <script src="/js/scripts.js"></script> -->
+    <form id="weight-loss-form">
+        <div>
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate" required>
+        </div>
+        <div>
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" name="endDate" required>
         </div>
         <button type="submit">Calculate</button>
     </form>
-    <div id="weight-loss-result"></div>
+    <p id="result"></p>
+   
+    <script>
+        $(document).ready(function() {
+            $('#weight-loss-form').on('submit', function(e) {
+                e.preventDefault();
 
-    <script src="/js/scripts.js"></script>
+                $.ajax({
+                    type: 'POST',
+                    url: '/users/weight-loss',
+                    data: {
+                        startDate: $('#startDate').val(),
+                        endDate: $('#endDate').val()
+                    },
+                    success: function(response) {
+                        $('#result').text(`Weight loss: ${response.weightLoss} kg`);
+                    },
+                    error: function(err) {
+                        $('#result').text(`Error: ${err.responseJSON.error}`);
+                    }
+                });
+            });
+        });
+    </script>
+    
 </body>
 </html>
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <h2>Calculate Weight Loss</h2>
+    <form id="weight-loss-form">
+        <div>
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate" required>
+        </div>
+        <div>
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" name="endDate" required>
+        </div>
+        <button type="submit">Calculate</button>
+    </form>
+    <p id="result"></p>
+    <a href="/users/logout">Logout</a>
+
+    <script>
+        $(document).ready(function() {
+            $('#weight-loss-form').on('submit', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/users/weight-loss',
+                    data: {
+                        startDate: $('#startDate').val(),
+                        endDate: $('#endDate').val()
+                    },
+                    success: function(response) {
+                        $('#result').text(`Weight loss: ${response.weightLoss} kg`);
+                    },
+                    error: function(err) {
+                        $('#result').text(`Error: ${err.responseJSON.error}`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+ -->
+
+
+ <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <h2>Calculate Weight Loss</h2>
+    <form id="weight-loss-form">
+        <div>
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate" required>
+        </div>
+        <div>
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" name="endDate" required>
+        </div>
+        <button type="submit">Calculate</button>
+    </form>
+    <p id="result"></p>
+    <a href="/users/logout">Logout</a>
+
+    <script>
+        $(document).ready(function() {
+            $('#weight-loss-form').on('submit', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/users/weight-loss',
+                    data: {
+                        startDate: $('#startDate').val(),
+                        endDate: $('#endDate').val()
+                    },
+                    success: function(response) {
+                        $('#result').text(`Weight loss: ${response.weightLoss} kg`);
+                    },
+                    error: function(err) {
+                        $('#result').text(`Error: ${err.responseJSON.error}`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> -->

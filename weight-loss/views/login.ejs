@@ -8,8 +8,8 @@
 </head>
 <body>
     <h1>Login</h1>
-    <% if (message) { %>
-        <div class="<%= message.type %>"><%= message.message %></div>
+    <% if (message && message.type === 'error') { %>
+        <div class="error"><%= message.message %></div>
     <% } %>
     <form action="/users/login" method="POST">
         <div>

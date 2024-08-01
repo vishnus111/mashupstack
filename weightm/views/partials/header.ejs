@@ -1,0 +1,24 @@
+<% include('partials/header') %>
+<h2>Signup</h2>
+<form action="/api/users/signup" method="POST">
+    <label for="email">Email:</label>
+    <input type="email" name="email" required>
+    <% if (errors) { %>
+        <% errors.forEach(error => { %>
+            <% if (error.param === 'email') { %>
+                <p style="color: red;"><%= error.msg %></p>
+            <% } %>
+        <% }) %>
+    <% } %>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required>
+    <% if (errors) { %>
+        <% errors.forEach(error => { %>
+            <% if (error.param === 'password') { %>
+                <p style="color: red;"><%= error.msg %></p>
+            <% } %>
+        <% }) %>
+    <% } %>
+    <button type="submit">Signup</button>
+</form>
+<% include('partials/footer') %>
